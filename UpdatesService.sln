@@ -5,13 +5,18 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2FABED1A-E0CB-45FC-9288-838A29D5EEBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdatesService", "src\UpdatesService\UpdatesService.csproj", "{1F7194D7-787F-4F34-B8A1-3609BA705480}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdatesService", "src\UpdatesService\UpdatesService.csproj", "{1F7194D7-787F-4F34-B8A1-3609BA705480}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdatesService.Client", "src\UpdatesService.Client\UpdatesService.Client.csproj", "{9837DEDD-439C-4279-B59C-4C7D1157079B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdatesService.Client", "src\UpdatesService.Client\UpdatesService.Client.csproj", "{9837DEDD-439C-4279-B59C-4C7D1157079B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CD532824-E569-4F78-8F27-513AFBC1A66B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdatesService.IntegrationTests", "tests\UpdatesService.IntegrationTests\UpdatesService.IntegrationTests.csproj", "{7E88DE6F-F121-475C-8D75-BD5576FAD672}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdatesService.IntegrationTests", "tests\UpdatesService.IntegrationTests\UpdatesService.IntegrationTests.csproj", "{7E88DE6F-F121-475C-8D75-BD5576FAD672}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{D35C9DA5-B2EE-4BC6-A7C3-33D2484FB15D}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\updates-service.yaml = deploy\updates-service.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

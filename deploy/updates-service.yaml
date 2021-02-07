@@ -32,3 +32,10 @@ spec:
           image: codefuller/musicfeed-updates-service:latest
           ports:
             - containerPort: 80
+          livenessProbe:
+            exec:
+              command: ["/bin/grpc_health_probe", "-addr=:80"]
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+            periodSeconds: 5
+            failureThreshold: 3

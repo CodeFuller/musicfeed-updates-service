@@ -8,18 +8,11 @@ namespace UpdatesService.IntegrationTests
 	{
 		private ServiceProvider ServiceProvider { get; set; }
 
-		public IUpdatesServiceClient CreateUpdatesServiceClient()
+		public TService CreateServiceClient<TService>()
 		{
 			InitializeServiceProvider();
 
-			return ServiceProvider.GetRequiredService<IUpdatesServiceClient>();
-		}
-
-		public IUpdatesDiagnosticsServiceClient CreateDiagnosticsServiceClient()
-		{
-			InitializeServiceProvider();
-
-			return ServiceProvider.GetRequiredService<IUpdatesDiagnosticsServiceClient>();
+			return ServiceProvider.GetRequiredService<TService>();
 		}
 
 		private void InitializeServiceProvider()

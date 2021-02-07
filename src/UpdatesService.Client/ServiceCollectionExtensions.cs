@@ -18,13 +18,19 @@ namespace UpdatesService.Client
 		/// <returns>The <see cref="IServiceCollection"/> so that additional calls can be chained.</returns>
 		public static IServiceCollection AddUpdatesServiceClient(this IServiceCollection services, Action<GrpcClientFactoryOptions> configureClient)
 		{
-			services.AddGrpcClient<Grpc.UpdatesService.UpdatesServiceClient>(configureClient);
-			services.AddGrpcClient<UpdatesDiagnosticsService.UpdatesDiagnosticsServiceClient>(configureClient);
-
-			services.AddSingleton<IUpdatesServiceClient, Grpc.UpdatesService.UpdatesServiceClient>(sp => sp.GetRequiredService<Grpc.UpdatesService.UpdatesServiceClient>());
-			services.AddSingleton<IUpdatesDiagnosticsServiceClient, UpdatesDiagnosticsService.UpdatesDiagnosticsServiceClient>(sp => sp.GetRequiredService<UpdatesDiagnosticsService.UpdatesDiagnosticsServiceClient>());
+			services.RegisterGrpcClient<IUpdatesServiceClient, Grpc.UpdatesService.UpdatesServiceClient>(configureClient);
+			services.RegisterGrpcClient<IUpdatesDiagnosticsServiceClient, UpdatesDiagnosticsService.UpdatesDiagnosticsServiceClient>(configureClient);
+			services.RegisterGrpcClient<IHealthServiceClient, Health.HealthClient>(configureClient);
 
 			return services;
+		}
+
+		private static void RegisterGrpcClient<TClientInterface, TClientImplementation>(this IServiceCollection services, Action<GrpcClientFactoryOptions> configureClient)
+			where TClientInterface : class
+			where TClientImplementation : class, TClientInterface
+		{
+			services.AddGrpcClient<TClientImplementation>(configureClient);
+			services.AddSingleton<TClientInterface, TClientImplementation>(sp => sp.GetRequiredService<TClientImplementation>());
 		}
 	}
 }

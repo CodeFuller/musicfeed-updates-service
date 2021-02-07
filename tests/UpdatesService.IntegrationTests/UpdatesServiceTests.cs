@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UpdatesService.Client;
 using UpdatesService.Grpc;
 
 namespace UpdatesService.IntegrationTests
@@ -46,7 +47,7 @@ namespace UpdatesService.IntegrationTests
 			};
 
 			using var factory = new CustomWebApplicationFactory();
-			var client = factory.CreateUpdatesServiceClient();
+			var client = factory.CreateServiceClient<IUpdatesServiceClient>();
 
 			// Act
 

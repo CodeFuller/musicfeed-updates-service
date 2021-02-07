@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using UpdatesService.Client;
 
 namespace UpdatesService.IntegrationTests
 {
@@ -13,7 +14,7 @@ namespace UpdatesService.IntegrationTests
 			// Arrange
 
 			using var factory = new CustomWebApplicationFactory();
-			var client = factory.CreateDiagnosticsServiceClient();
+			var client = factory.CreateServiceClient<IUpdatesDiagnosticsServiceClient>();
 
 			// Act
 

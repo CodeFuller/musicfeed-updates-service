@@ -34,7 +34,7 @@ spec:
             - containerPort: 80
           livenessProbe:
             exec:
-              command: ["/bin/grpc_health_probe", "-addr=:80"]
+              command: ["/bin/grpc_health_probe", "-addr=localhost:80"]
             initialDelaySeconds: 10
             timeoutSeconds: 1
             periodSeconds: 5

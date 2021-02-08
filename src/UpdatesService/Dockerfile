@@ -26,4 +26,6 @@ RUN GRPC_HEALTH_PROBE_VERSION=v0.3.1 && \
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish /app
+COPY --from=publish /bin/grpc_health_probe /bin/grpc_health_probe
+
 ENTRYPOINT ["dotnet", "UpdatesService.dll"]

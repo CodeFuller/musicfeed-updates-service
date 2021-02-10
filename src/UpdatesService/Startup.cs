@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +13,9 @@ namespace UpdatesService
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddGrpc();
+
+			services.AddControllers();
+			services.AddHealthChecks();
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -25,8 +30,18 @@ namespace UpdatesService
 			app.UseEndpoints(endpoints =>
 			{
 				endpoints.MapGrpcService<Services.UpdatesService>();
-				endpoints.MapGrpcService<Services.DiagnosticsService>();
-				endpoints.MapGrpcService<Services.HealthService>();
+
+				endpoints.MapHealthChecks("/health/ready", new HealthCheckOptions
+				{
+					Predicate = check => check.Tags.Contains("ready"),
+					ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+				});
+
+				endpoints.MapHealthChecks("/health/live", new HealthCheckOptions
+				{
+					Predicate = check => check.Tags.Contains("live"),
+					ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+				});
 
 				endpoints.MapGet("/", async context =>
 				{

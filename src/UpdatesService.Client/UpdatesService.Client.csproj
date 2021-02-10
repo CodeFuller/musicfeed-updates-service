@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <CurrentVersion>0.0.5</CurrentVersion>
+    <CurrentVersion>0.0.6</CurrentVersion>
     <VersionPrefix>$(CurrentVersion)</VersionPrefix>
     <!-- VersionSuffix is set to "preview" by CI server for non-default branches -->
     <VersionSuffix></VersionSuffix>
@@ -35,7 +35,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="../UpdatesService/Protos/health.proto" GrpcServices="Client" Link="Protos/health.proto" />
     <Protobuf Include="../UpdatesService/Protos/updates.proto" GrpcServices="Client" Link="Protos/updates.proto" />
   </ItemGroup>
 

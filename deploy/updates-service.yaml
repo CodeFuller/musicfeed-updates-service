@@ -33,8 +33,17 @@ spec:
           ports:
             - containerPort: 80
           livenessProbe:
-            exec:
-              command: ["/bin/grpc_health_probe", "-addr=localhost:80"]
+            httpGet:
+              path: /health/live
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+            timeoutSeconds: 1
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 80
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 1

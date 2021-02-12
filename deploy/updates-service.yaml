@@ -1,3 +1,9 @@
+# kubectl create -f "updates-service.yaml"
+# kubectl port-forward service/updates-service 8102:80
+# kubectl port-forward service/updates-service 8103:81
+# http://localhost:8102/health/ready
+# kubectl delete -f "updates-service.yaml"
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,6 +14,10 @@ spec:
   ports:
   - port: 80
     protocol: TCP
+    name: http
+  - port: 81
+    protocol: TCP
+    name: grpc
   selector:
     app: updates-service
 ---
@@ -32,6 +42,7 @@ spec:
           image: codefuller/musicfeed-updates-service:latest
           ports:
             - containerPort: 80
+            - containerPort: 81
           livenessProbe:
             httpGet:
               path: /health/live

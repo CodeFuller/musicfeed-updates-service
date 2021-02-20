@@ -1,8 +1,11 @@
-﻿using HealthChecks.UI.Client;
+﻿using System;
+using AspNetMonsters.ApplicationInsights.AspNetCore;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,12 +13,24 @@ namespace UpdatesService
 {
 	public class Startup
 	{
+		private readonly IConfiguration configuration;
+
+		public Startup(IConfiguration configuration)
+		{
+			this.configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
+		}
+
 		public void ConfigureServices(IServiceCollection services)
 		{
 			services.AddGrpc();
 
 			services.AddControllers();
 			services.AddHealthChecks();
+
+			services.AddApplicationInsightsTelemetry();
+			services.AddApplicationInsightsKubernetesEnricher();
+
+			services.AddCloudRoleNameInitializer(configuration["applicationInsights:roleName"]);
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

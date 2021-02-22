@@ -29,7 +29,6 @@ namespace UpdatesService
 
 			services.AddApplicationInsightsTelemetry();
 			services.AddApplicationInsightsKubernetesEnricher();
-
 			services.AddCloudRoleNameInitializer(configuration["applicationInsights:roleName"]);
 		}
 

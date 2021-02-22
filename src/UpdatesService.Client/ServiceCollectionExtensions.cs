@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net.Http;
 using Grpc.Net.ClientFactory;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,7 +27,12 @@ namespace UpdatesService.Client
 			where TClientInterface : class
 			where TClientImplementation : class, TClientInterface
 		{
-			services.AddGrpcClient<TClientImplementation>(configureClient);
+			services.AddGrpcClient<TClientImplementation>(configureClient)
+
+				// By default AddGrpcClient will use SocketsHttpHandler - https://github.com/grpc/grpc-dotnet/blob/08024e350d39394db6982f65528fb2e3653c7666/src/Shared/HttpHandlerFactory.cs#L27
+				// This will break dependency detection by Application Insights.
+				.ConfigurePrimaryHttpMessageHandler(() => new HttpClientHandler());
+
 			services.AddSingleton<TClientInterface, TClientImplementation>(sp => sp.GetRequiredService<TClientImplementation>());
 		}
 	}

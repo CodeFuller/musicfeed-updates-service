@@ -1,5 +1,5 @@
 ﻿using System;
-using AspNetMonsters.ApplicationInsights.AspNetCore;
+using CodeFuller.MusicFeed.ApplicationInsights;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -27,9 +27,7 @@ namespace UpdatesService
 			services.AddControllers();
 			services.AddHealthChecks();
 
-			services.AddApplicationInsightsTelemetry();
-			services.AddApplicationInsightsKubernetesEnricher();
-			services.AddCloudRoleNameInitializer(configuration["applicationInsights:roleName"]);
+			services.AddApplicationInsights(settings => configuration.Bind("applicationInsights", settings));
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

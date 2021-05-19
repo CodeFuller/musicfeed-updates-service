@@ -89,6 +89,60 @@ stages:
         targetPath: deploy/updates-service.yaml
         artifact: k8s-manifest
 
+- stage: BuildClientNuGetStage
+  displayName: UpdatesService.Client NuGet
+  jobs:
+  - job: BuildClientNuGetJob
+    displayName: UpdatesService.Client NuGet
+    steps:
+    - powershell: |
+        $projectFileName = "src/UpdatesService.Client/UpdatesService.Client.csproj"
+        
+        [xml]$csproj = Get-Content $projectFileName
+        [System.Xml.XmlElement]$propertyGroup = $csproj.Project.PropertyGroup[0]
+        
+        if ("$(Build.SourceBranchName)" -ne "master") {
+            $suffix = "preview-{0}" -f ("$(Build.BuildNumber)".PadLeft(6, "0"))
+        } else {
+            $suffix = ""
+        }
+        
+        $propertyGroup.VersionSuffix = $suffix
+        
+        $utf8WithBom = New-Object System.Text.UTF8Encoding($true)
+        $sw = New-Object System.IO.StreamWriter($projectFileName, $false, $utf8WithBom)
+        $csproj.Save($sw)
+      displayName: Set Package Suffix
+
+    - task: DotNetCoreCLI@2
+      displayName: Restore Packages
+      inputs:
+        command: restore
+        projects: src/UpdatesService.Client/UpdatesService.Client.csproj
+
+    - task: DotNetCoreCLI@2
+      displayName: Build Project
+      inputs:
+        projects: src/UpdatesService.Client/UpdatesService.Client.csproj
+        arguments: --no-restore --configuration Release
+
+    - task: DotNetCoreCLI@2
+      displayName: Pack NuGet Package
+      inputs:
+        command: pack
+        packagesToPack: src/UpdatesService.Client/UpdatesService.Client.csproj
+        configuration: Release
+        nobuild: true
+
+    - script: |
+        # We use dotnet push to handle 409 error for existing packages
+        # Neither dotnet nor NuGet tasks do not allow to pass --skip-duplicate (or -skipDuplicate) parameter.
+        # https://stackoverflow.com/questions/46115212
+        
+        dotnet nuget push $(Build.ArtifactStagingDirectory)/*.nupkg --skip-duplicate --api-key $(NuGetApiKey) --source https://api.nuget.org/v3/index.json
+      displayName: Publish NuGet Package
+      failOnStderr: true
+
 - template: deploy-template.yaml
   parameters:
     envName: prod

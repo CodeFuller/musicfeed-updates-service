@@ -90,10 +90,10 @@ stages:
         artifact: k8s-manifest
 
 - stage: BuildClientNuGetStage
-  displayName: UpdatesService.Client NuGet
+  displayName: Build UpdatesService.Client NuGet
   jobs:
   - job: BuildClientNuGetJob
-    displayName: UpdatesService.Client NuGet
+    displayName: Build UpdatesService.Client NuGet
     steps:
     - powershell: |
         $projectFileName = "src/UpdatesService.Client/UpdatesService.Client.csproj"

@@ -1,5 +1,4 @@
 ﻿using System;
-using CodeFuller.MusicFeed.ApplicationInsights;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -26,8 +25,6 @@ namespace UpdatesService
 
 			services.AddControllers();
 			services.AddHealthChecks();
-
-			services.AddApplicationInsights(settings => configuration.Bind("applicationInsights", settings));
 		}
 
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

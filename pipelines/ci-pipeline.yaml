@@ -142,8 +142,3 @@ stages:
         dotnet nuget push $(Build.ArtifactStagingDirectory)/*.nupkg --skip-duplicate --api-key $(NuGetApiKey) --source https://api.nuget.org/v3/index.json
       displayName: Publish NuGet Package
       failOnStderr: true
-
-- template: deploy-template.yaml
-  parameters:
-    envName: prod
-    envDisplayName: Production

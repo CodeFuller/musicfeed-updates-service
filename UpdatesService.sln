@@ -15,7 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdatesService.IntegrationT
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pipelines", "pipelines", "{D35C9DA5-B2EE-4BC6-A7C3-33D2484FB15D}"
 	ProjectSection(SolutionItems) = preProject
-		pipelines\azure-pipelines.yaml = pipelines\azure-pipelines.yaml
+		pipelines\cd-pipeline.yaml = pipelines\cd-pipeline.yaml
+		pipelines\ci-pipeline.yaml = pipelines\ci-pipeline.yaml
 		pipelines\deploy-template.yaml = pipelines\deploy-template.yaml
 		pipelines\updates-service.yaml = pipelines\updates-service.yaml
 	EndProjectSection

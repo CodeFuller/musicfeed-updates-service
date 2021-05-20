@@ -76,18 +76,18 @@ stages:
         addPipelineData: false
 
     - powershell: |
-        $fileName = "deploy/updates-service.yaml"
+        $fileName = "pipelines/updates-service.yaml"
         $imagePart = "image: codefuller/musicfeed-updates-service"
         
         (Get-Content -path $fileName -Raw) -replace "${imagePart}:latest", "${imagePart}:$(ServiceVersion)" | Set-Content -NoNewline -Path $fileName
       failOnStderr: true
-      displayName: Update Image Tag in k8s Manifest
+      displayName: Update Image Tag in K8s Manifest
 
     - task: PublishPipelineArtifact@1
-      displayName: 'Publish Artifact: k8s Manifest'
+      displayName: 'Publish Artifact: K8s Manifest'
       inputs:
-        targetPath: deploy/updates-service.yaml
-        artifact: k8s-manifest
+        targetPath: pipelines/updates-service.yaml
+        artifact: K8s-manifest
 
 - stage: BuildClientNuGetStage
   displayName: Build UpdatesService.Client NuGet

@@ -5,6 +5,7 @@ EXPOSE 80
 EXPOSE 81
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /build
 
 COPY ["src/MusicFeed.UpdatesService/MusicFeed.UpdatesService.csproj", "src/MusicFeed.UpdatesService/"]
 # MusicFeed.UpdatesService.Client is not published within an image, but this project is used by integration tests.

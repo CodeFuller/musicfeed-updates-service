@@ -224,11 +224,12 @@ stages:
         packDirectory: $(Build.ArtifactStagingDirectory)/nugets
         verbosityPack: Minimal
 
-    - task: NuGetCommand@2
-      displayName: Push NuGet Packages
+    - script: |
+        # We use dotnet push to handle 409 error for existing packages
+        # Neither dotnet nor NuGet tasks do not allow to pass --skip-duplicate (or -skipDuplicate) parameter.
+        # https://stackoverflow.com/questions/46115212
+        
+        dotnet nuget push $(Build.ArtifactStagingDirectory)/nugets/*.nupkg --skip-duplicate --api-key $(GlobalConfig.NuGetApiKey) --source https://api.nuget.org/v3/index.json
+      displayName: Publish NuGet Package
       condition: and(succeeded(), eq('${{ parameters.PublishArtifacts }}', 'true'))
-      inputs:
-        command: push
-        packagesToPush: $(Build.ArtifactStagingDirectory)/nugets/*.nupkg
-        nuGetFeedType: external
-        publishFeedCredentials: CodeFuller @ nuget.org
+      failOnStderr: true

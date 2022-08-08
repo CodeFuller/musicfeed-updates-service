@@ -29,7 +29,13 @@ namespace MusicFeed.UpdatesService.IntegrationTests
 			services.AddUpdatesServiceClient(factoryOptions =>
 			{
 				factoryOptions.Address = httpClient.BaseAddress;
-				factoryOptions.ChannelOptionsActions.Add(channelOptions => channelOptions.HttpClient = httpClient);
+				factoryOptions.ChannelOptionsActions.Add(channelOptions =>
+				{
+					channelOptions.HttpClient = httpClient;
+
+					// Setting HttpHandler to null to prevent the error "HttpClient and HttpHandler have been configured. Only one HTTP caller can be specified."
+					channelOptions.HttpHandler = null;
+				});
 			});
 
 			ServiceProvider = services.BuildServiceProvider();

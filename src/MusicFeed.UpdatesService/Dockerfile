@@ -1,10 +1,10 @@
 # docker build -t musicfeed/updates-service:latest -f Dockerfile ../..
 
-FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 EXPOSE 80
 EXPOSE 81
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
 COPY ["src/MusicFeed.UpdatesService/MusicFeed.UpdatesService.csproj", "/project/src/MusicFeed.UpdatesService/"]
 # MusicFeed.UpdatesService.Client is not published within an image, but this project is used by UpdatesService.IntegrationTests

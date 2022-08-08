@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <LangVersion>latest</LangVersion>
-    <CurrentVersion>0.0.8</CurrentVersion>
+    <CurrentVersion>1.0.0</CurrentVersion>
     <VersionPrefix>$(CurrentVersion)</VersionPrefix>
     <!-- VersionSuffix is set to "preview" by CI server for non-default branches -->
     <VersionSuffix></VersionSuffix>
@@ -29,13 +29,13 @@
 
   <PropertyGroup>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <CodeAnalysisRuleSet>../../UpdatesService.src.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>../../MusicFeed.UpdatesService.src.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="../UpdatesService/Protos/updates.proto" GrpcServices="Client" Link="Protos/updates.proto" />
+    <Protobuf Include="../MusicFeed.UpdatesService/Protos/updates.proto" GrpcServices="Client" Link="Protos/updates.proto" />
   </ItemGroup>
 
   <ItemGroup>

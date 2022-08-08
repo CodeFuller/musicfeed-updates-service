@@ -8,7 +8,7 @@
 
     <PropertyGroup>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
-    <CodeAnalysisRuleSet>../../UpdatesService.tests.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>../../MusicFeed.UpdatesService.tests.ruleset</CodeAnalysisRuleSet>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors />
   </PropertyGroup>
@@ -23,8 +23,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\UpdatesService.Client\UpdatesService.Client.csproj" />
-    <ProjectReference Include="..\..\src\UpdatesService\UpdatesService.csproj" />
+    <ProjectReference Include="..\..\src\MusicFeed.UpdatesService.Client\MusicFeed.UpdatesService.Client.csproj" />
+    <ProjectReference Include="..\..\src\MusicFeed.UpdatesService\MusicFeed.UpdatesService.csproj" />
   </ItemGroup>
 
 </Project>

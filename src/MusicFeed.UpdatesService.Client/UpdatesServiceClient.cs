@@ -1,6 +1,6 @@
-﻿using UpdatesService.Client;
+﻿using MusicFeed.UpdatesService.Client;
 
-namespace UpdatesService.Grpc
+namespace MusicFeed.UpdatesService.Grpc
 {
 #pragma warning disable CA1724 // Type names should not match namespaces
 	public static partial class UpdatesService

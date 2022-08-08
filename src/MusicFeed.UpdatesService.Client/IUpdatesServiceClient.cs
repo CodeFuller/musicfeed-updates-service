@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Threading;
-using UpdatesService.Grpc;
-
+using MusicFeed.UpdatesService.Grpc;
 using grpc = Grpc.Core;
 
-namespace UpdatesService.Client
+namespace MusicFeed.UpdatesService.Client
 {
 	/// <summary>
 	/// Client for UpdatesService.

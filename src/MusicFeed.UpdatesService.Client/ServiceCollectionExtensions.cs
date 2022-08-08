@@ -3,7 +3,7 @@ using System.Net.Http;
 using Grpc.Net.ClientFactory;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace UpdatesService.Client
+namespace MusicFeed.UpdatesService.Client
 {
 	/// <summary>
 	/// Extension methods for adding client to UpdatesService.

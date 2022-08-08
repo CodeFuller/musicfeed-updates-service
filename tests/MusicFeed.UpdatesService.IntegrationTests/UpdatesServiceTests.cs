@@ -1,10 +1,10 @@
 using System.Threading.Tasks;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UpdatesService.Client;
-using UpdatesService.Grpc;
+using MusicFeed.UpdatesService.Client;
+using MusicFeed.UpdatesService.Grpc;
 
-namespace UpdatesService.IntegrationTests
+namespace MusicFeed.UpdatesService.IntegrationTests
 {
 	[TestClass]
 	public class UpdatesServiceTests

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace UpdatesService
+namespace MusicFeed.UpdatesService
 {
 	public class Startup
 	{

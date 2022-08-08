@@ -3,7 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UpdatesService.IntegrationTests
+namespace MusicFeed.UpdatesService.IntegrationTests
 {
 	[TestClass]
 	public class HealthTests

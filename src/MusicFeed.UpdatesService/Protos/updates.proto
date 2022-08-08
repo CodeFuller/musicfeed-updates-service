@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "UpdatesService.Grpc";
+option csharp_namespace = "MusicFeed.UpdatesService.Grpc";
 
 // The service for getting updates on music releases.
 service UpdatesService {

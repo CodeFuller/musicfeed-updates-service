@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Grpc.Core;
-using UpdatesService.Grpc;
+using MusicFeed.UpdatesService.Grpc;
 
-namespace UpdatesService.Services
+namespace MusicFeed.UpdatesService.Services
 {
 	internal class UpdatesService : Grpc.UpdatesService.UpdatesServiceBase
 	{

@@ -1,4 +1,4 @@
-# docker build -t musicfeed/updates-service:latest -f "src/MusicFeed.UpdatesService/Dockerfile" .
+# docker build -t musicfeed/updates-service:latest -f "../../src/MusicFeed.UpdatesService/Dockerfile" ../..
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 EXPOSE 80

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net.Http;
 using Grpc.Net.ClientFactory;
 using Microsoft.Extensions.DependencyInjection;

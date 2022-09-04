@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using MusicFeed.UpdatesService.Grpc;
 using grpc = Grpc.Core;

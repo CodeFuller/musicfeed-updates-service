@@ -1,4 +1,4 @@
-﻿using MusicFeed.UpdatesService.Client;
+using MusicFeed.UpdatesService.Client;
 
 namespace MusicFeed.UpdatesService.Grpc
 {
